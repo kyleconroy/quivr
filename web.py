@@ -6,7 +6,8 @@ app = Flask(__name__)
 auth = (os.environ["FLICKR_KEY"], os.environ["FLICKR_SECRET"]) 
 
 @app.route("/")
-def api_root(in_url):
+def api_root():
+    print os.environ
     return jsonify({
         "links": [
             "/photos",
