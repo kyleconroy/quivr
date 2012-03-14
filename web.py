@@ -1,9 +1,6 @@
 import os
-import requests
-import json
+import flickr
 from flask import Flask, jsonify, abort, make_response, request
-
-FLICKR_BASE = "http://api.flickr.com/services/rest/"
 
 app = Flask(__name__)
 
