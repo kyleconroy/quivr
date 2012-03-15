@@ -2,6 +2,9 @@ import os
 import flickr
 from flask import Flask, jsonify, abort, make_response, request
 
+# Reddit 6837818396
+# Me 6839706724
+
 app = Flask(__name__)
 
 if __name__ == '__main__':
