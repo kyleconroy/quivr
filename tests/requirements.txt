@@ -1,3 +1,3 @@
 -e git+git://github.com/mitsuhiko/flask.git#egg=Flask
-gunicorn==0.13.4
-requests==0.10.2
+nose
+mock==0.8
