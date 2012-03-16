@@ -222,6 +222,24 @@ class PublicContacts(MethodView):
         return jsonify(flickr.api("contacts.getPublicList", user_id=user_id))
 
 
+class Groups(MethodView):
+
+    def get(self):
+        return jsonify(flickr.api("flickr.people.groups"))
+
+
+class Group(MethodView):
+
+    def get(self, group_id):
+        return jsonify(flickr.api("groups.getInfo", group_id=group_id)) 
+
+
+class GroupPhotos(MethodView):
+
+    def get(self, group_id):
+        return jsonify(flickr.api("groups.pools.getPhotos", group_id=group_id)) 
+
+
 def add_view(url, view):
     app.add_url_rule(url, view_func=view.as_view(str(view).lower()))
 
@@ -255,6 +273,8 @@ add_view('/collections/<collection_id>', Collection)
 add_view('/users/<user_id>', User)
 add_view('/users/<user_id>/favorites', PublicFavorites)
 add_view('/users/<user_id>/contacts', PublicContacts)
+add_view('/groups', Groups)
+add_view('/groups/<group_id>', Group)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
