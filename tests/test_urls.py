@@ -24,6 +24,8 @@ get_urls = [
     "/galleries",
     "/galleries/1",
     "/tags",
+    "/blogs",
+    "/blogs/1",
     "/login/oauth/authorize",
 ]
 

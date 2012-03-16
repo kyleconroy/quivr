@@ -146,6 +146,35 @@ class Activity(MethodView):
         return jsonify(flickr.api("photos.activity.userComments"))
 
 
+class Blogs(MethodView):
+
+    def get(self):
+        return jsonify(flickr.api("blogs.getList"))
+
+
+class Blog(MethodView):
+
+    def get(self, blog_id):
+        return jsonify({})
+
+    def post(self, blog_id):
+        """Not sure about this endpoint"""
+        return jsonify(flickr.api("blogs.postPhoto", blog_id=blog_id))
+
+
+class Collection(MethodView):
+
+    def get(self, collection_id):
+        return jsonify(flickr.api("collections.getInfo",
+                       collection_id=collection_id))
+
+
+class Collections(MethodView):
+
+    def get(self):
+        return jsonify({})
+
+
 class Authorize(MethodView):
 
     def get(self):
@@ -184,6 +213,11 @@ add_view('/galleries/<gallery_id>', Gallery)
 add_view('/activity', Activity)
 add_view('/login/oauth/authorize', Authorize)
 add_view('/login/oauth/access_token', Token)
+add_view('/blogs', Blogs)
+add_view('/blogs/<blog_id>', Blog)
+add_view('/collections', Collections)
+add_view('/collections/<collection_id>', Collection)
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
