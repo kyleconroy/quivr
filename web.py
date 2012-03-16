@@ -146,6 +146,20 @@ class Activity(MethodView):
         return jsonify(flickr.api("photos.activity.userComments"))
 
 
+class Authorize(MethodView):
+
+    def get(self):
+        return ""
+
+
+class Token(MethodView):
+
+    def post(self):
+        return ""
+
+
+
+
 def add_view(url, view):
     app.add_url_rule(url, view_func=view.as_view(str(view).lower()))
 
@@ -168,6 +182,8 @@ add_view('/tags', Tags)
 add_view('/galleries', Galleries)
 add_view('/galleries/<gallery_id>', Gallery)
 add_view('/activity', Activity)
+add_view('/login/oauth/authorize', Authorize)
+add_view('/login/oauth/access_token', Token)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

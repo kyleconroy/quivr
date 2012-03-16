@@ -6,7 +6,7 @@ from nose.tools import assert_equals
 client = app.test_client()
 
 
-valid_urls = [
+get_urls = [
     "/photos",
     "/photos/1",
     "/photos/1/sizes",
@@ -24,18 +24,33 @@ valid_urls = [
     "/galleries",
     "/galleries/1",
     "/tags",
+    "/login/oauth/authrozie",
+]
 
+post_urls = [
+    "login/oauth/authorize",
 ]
 
 
-def test_valid_url():
-    for url in valid_urls:
+def test_valid_get_url():
+    for url in get_urls:
+        yield check_valid_get_url, url
+
+
+def check_valid_get_url(url):
+    with patch("web.flickr.api") as mock:
+        mock.return_value = {}
+        resp = client.get(url)
+        assert_equals(resp.status_code, 200)
+
+def test_valid_post_url():
+    for url in post_urls:
         yield check_valid_url, url
 
 
 def check_valid_url(url):
     with patch("web.flickr.api") as mock:
         mock.return_value = {}
-        resp = client.get(url)
+        resp = client.post(url)
         assert_equals(resp.status_code, 200)
 
