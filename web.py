@@ -140,6 +140,23 @@ class Gallery(MethodView):
                        gallery_id=gallery_id))
 
 
+class GalleryPhotos(MethodView):
+
+    def get(self, gallery_id):
+        return jsonify(flickr.api("photos.galleries.getPhotos", 
+                       gallery_id=gallery_id))
+
+
+class GalleryPhoto(MethodView):
+
+    def get(self, gallery_id, photo_id):
+        return jsonify({})
+
+    def post(self, gallery_id, photo_id):
+        return jsonify(flickr.api("photos.galleries.editPhoto", 
+                       gallery_id=gallery_id, photo_id=photo_id))
+
+
 class Activity(MethodView):
 
     def get(self):
@@ -226,6 +243,8 @@ add_view('/photosets/<set_id>/comments', PhotosetComments)
 add_view('/tags', Tags)
 add_view('/galleries', Galleries)
 add_view('/galleries/<gallery_id>', Gallery)
+add_view('/galleries/<gallery_id>/photos', GalleryPhotos)
+add_view('/galleries/<gallery_id>/photos/<photo_id>', GalleryPhoto)
 add_view('/activity', Activity)
 add_view('/login/oauth/authorize', Authorize)
 add_view('/login/oauth/access_token', Token)

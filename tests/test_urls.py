@@ -23,6 +23,8 @@ get_urls = [
     "/photosets/1/comments",
     "/galleries",
     "/galleries/1",
+    "/galleries/1/photos",
+    "/galleries/1/photos/1",
     "/tags",
     "/blogs",
     "/blogs/1",
