@@ -187,6 +187,22 @@ class Token(MethodView):
         return jsonify({})
 
 
+class User(MethodView):
+
+    def get(self, user_id):
+        return jsonify({})
+
+
+class PublicFavorites(MethodView):
+
+    def get(self, user_id):
+        return jsonify(flickr.api("favorites.getPublicList", user_id=user_id))
+
+
+class PublicContacts(MethodView):
+
+    def get(self, user_id):
+        return jsonify(flickr.api("contacts.getPublicList", user_id=user_id))
 
 
 def add_view(url, view):
@@ -217,7 +233,9 @@ add_view('/blogs', Blogs)
 add_view('/blogs/<blog_id>', Blog)
 add_view('/collections', Collections)
 add_view('/collections/<collection_id>', Collection)
-
+add_view('/users/<user_id>', User)
+add_view('/users/<user_id>/favorites', PublicFavorites)
+add_view('/users/<user_id>/contacts', PublicContacts)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

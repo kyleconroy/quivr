@@ -26,6 +26,11 @@ get_urls = [
     "/tags",
     "/blogs",
     "/blogs/1",
+    "/collections",
+    "/collections/1",
+    "/users/1",
+    "/users/1/favorites",
+    "/users/1/contacts",
     "/login/oauth/authorize",
 ]
 
