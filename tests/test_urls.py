@@ -24,11 +24,11 @@ get_urls = [
     "/galleries",
     "/galleries/1",
     "/tags",
-    "/login/oauth/authrozie",
+    "/login/oauth/authorize",
 ]
 
 post_urls = [
-    "login/oauth/authorize",
+    "/login/oauth/access_token",
 ]
 
 

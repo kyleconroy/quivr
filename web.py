@@ -149,13 +149,13 @@ class Activity(MethodView):
 class Authorize(MethodView):
 
     def get(self):
-        return ""
+        return jsonify({})
 
 
 class Token(MethodView):
 
     def post(self):
-        return ""
+        return jsonify({})
 
 
 
